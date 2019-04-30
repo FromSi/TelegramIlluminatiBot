@@ -4,6 +4,7 @@ from message.root import *
 from message.roll import *
 from message.help import *
 from message.pin import *
+from message.welcome import *
 from telegram.ext import *
 
 
@@ -22,6 +23,8 @@ def main():
     dispatcher.add_handler(CommandHandler('name', name, pass_args=True, pass_job_queue=True))
     dispatcher.add_handler(CommandHandler('roll', roll, pass_args=True, pass_job_queue=True))
     dispatcher.add_handler(CommandHandler('pin', pin_reply_message, pass_job_queue=True))
+
+    dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, welcome))
 
     # Start the webhook
     updater.start_webhook(listen="0.0.0.0",
