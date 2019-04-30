@@ -78,24 +78,24 @@ def create_root():
     return str + "╹"
 
 
-def name(bot, update, args):
+def name(bot, update, args, job_queue):
     if names.get(args[0]) is not None:
         message = bot.send_message(chat_id=update.message.chat_id,
                                    text=create_name(name=names[args[0]]),
                                    reply_to_message_id=update.message.message_id)
 
-        utils.clear.clear_message(bot, update, message)
+        utils.clear.clear_message(bot, update, message, 20, job_queue)
     else:
         message = bot.send_message(chat_id=update.message.chat_id,
                                    text="Ошибка!\nТакого ника не существует в БД.",
                                    reply_to_message_id=update.message.message_id)
 
-        utils.clear.clear_message(bot, update, message)
+        utils.clear.clear_message(bot, update, message, 10, job_queue)
 
 
-def root(bot, update):
+def root(bot, update, job_queue):
     message = bot.send_message(chat_id=update.message.chat_id,
                                text=create_root(),
                                reply_to_message_id=update.message.message_id)
 
-    utils.clear.clear_message(bot, update, message)
+    utils.clear.clear_message(bot, update, message, 60, job_queue)

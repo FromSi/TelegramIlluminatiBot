@@ -1,8 +1,9 @@
 import random, utils.clear
 
 
-def roll(bot, update, args):
+def roll(bot, update, args, job_queue):
     answer = ""
+    seconds = 15
 
     if len(args) == 3:
         n1 = min(int(args[0]), int(args[1]))
@@ -16,6 +17,8 @@ def roll(bot, update, args):
 
         for i in range(n3):
             answer += f"{i + 1}: {random.randint(n1, n2)}\n"
+
+        seconds = n3 * 2
     elif len(args) == 2:
         n1 = min(int(args[0]), int(args[1]))
         n2 = max(int(args[0]), int(args[1]))
@@ -29,4 +32,4 @@ def roll(bot, update, args):
                                text=answer,
                                reply_to_message_id=update.message.message_id)
 
-    utils.clear.clear_message(bot, update, message)
+    utils.clear.clear_message(bot, update, message, 20, job_queue)

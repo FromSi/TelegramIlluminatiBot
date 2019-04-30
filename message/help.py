@@ -15,7 +15,7 @@ help_message = '''
 /name {Ник пользователя}
 Древо пользователя
 
-/roll {одно, для или три числа}
+/roll {одно, два или три числа}
 Генерация рандомных чисел
 
 /hroll
@@ -60,25 +60,25 @@ help_message_roll = '''
 '''
 
 
-def help(bot, update):
+def help(bot, update, job_queue):
     message = bot.send_message(chat_id=update.message.chat_id,
                                text=help_message,
                                reply_to_message_id=update.message.message_id)
 
-    utils.clear.clear_message(bot, update, message)
+    utils.clear.clear_message(bot, update, message, 60, job_queue)
 
 
-def hroot(bot, update):
+def hroot(bot, update, job_queue):
     message = bot.send_message(chat_id=update.message.chat_id,
                                text=help_message_root,
                                reply_to_message_id=update.message.message_id)
 
-    utils.clear.clear_message(bot, update, message)
+    utils.clear.clear_message(bot, update, message, 60, job_queue)
 
 
-def hroll(bot, update):
+def hroll(bot, update, job_queue):
     message = bot.send_message(chat_id=update.message.chat_id,
                                text=help_message_roll,
                                reply_to_message_id=update.message.message_id)
 
-    utils.clear.clear_message(bot, update, message)
+    utils.clear.clear_message(bot, update, message, 60, job_queue)
